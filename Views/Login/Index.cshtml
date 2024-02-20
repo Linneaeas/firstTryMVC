@@ -5,9 +5,25 @@
 <div class="text-center">
 
     <div class="login">
+
         <h1>@ViewData["Title"]</h1>
-        <p>Username:</p>
-        <p>Password:</p>
+
+<form action="" method="get" class="form-example">
+  <div class="form-example">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" required />
+  </div>
+  <div class="form-example">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" required />
+  </div>
+  <div class="form-example">
+    <input type="submit" value="Login!" />
+  </div>
+</form>
+
+<h3>Not a member yet?</h3> 
+<button>Create account</button>
 
     </div>
 </div>
