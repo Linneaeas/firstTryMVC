@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<div class="text-center">
+
+    <div class="create-account">
+
+        <h1>@ViewData["Title"]</h1>
+
+        <form action="" method="get" class="form-example">
+            <div class="form-example">
+                <label for="firstName">First name: </label>
+                <input type="text" name="firstName" id="firstName" required />
+            </div>
+            <div class="form-example">
+                <label for="lastName">Last name: </label>
+                <input type="text" name="lastName" id="lastName" required />
+            </div>
+            <div class="form-example">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" required />
+            </div>
+            <div class="form-example">
+                <label for="password">Choose password: </label>
+                <input type="password" name="password" id="password" required />
+            </div>
+            <div class="form-example">
+                <input type="submit" value="Create account" />
+            </div>
+        </form>
+
+
+
+    </div>
+</div>

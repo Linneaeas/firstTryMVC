@@ -1,29 +1,30 @@
 @{
-    ViewData["Title"] = "Login Page";
+  ViewData["Title"] = "Login";
 }
 
 <div class="text-center">
 
-    <div class="login">
+  <div class="login">
 
-        <h1>@ViewData["Title"]</h1>
+    <h1>@ViewData["Title"]</h1>
 
-<form action="" method="get" class="form-example">
-  <div class="form-example">
-    <label for="username">Username: </label>
-    <input type="text" name="username" id="username" required />
+    <form action="" method="get" class="form-example">
+      <div class="form-example">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" required />
+      </div>
+      <div class="form-example">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" required />
+      </div>
+      <div class="form-example">
+        <input type="submit" value="Login!" />
+      </div>
+    </form>
+
+    <h3>Not a member yet?</h3>
+    <a asp-area="" asp-controller="Login" asp-action="CreateAccount">Create account</a>
+
+
   </div>
-  <div class="form-example">
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" required />
-  </div>
-  <div class="form-example">
-    <input type="submit" value="Login!" />
-  </div>
-</form>
-
-<h3>Not a member yet?</h3> 
-<button>Create account</button>
-
-    </div>
 </div>
