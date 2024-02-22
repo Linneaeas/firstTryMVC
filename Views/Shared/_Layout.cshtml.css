@@ -3,11 +3,12 @@ for details on configuring this project to bundle and minify static web assets. 
 
 nav {
   background-color: rgb(171, 210, 241);
+  font-size: 20px;
 }
 ul {
-  display: flex;
-  gap: 2em;
+  gap: 2rem;
 }
+
 main {
   display: flex;
   justify-content: center;

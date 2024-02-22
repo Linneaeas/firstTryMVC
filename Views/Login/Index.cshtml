@@ -2,28 +2,33 @@
   ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
 
-  <div class="login">
 
-    <h1>@ViewData["Title"]</h1>
+<div class="login">
 
-    <form action="" method="get" class="form-example">
-      <div class="form-example">
-        <label for="username">Username: </label>
-        <input type="text" name="username" id="username" required />
+  <h1>@ViewData["Title"]</h1>
+
+  <div style="max-width: 500px; padding-top:30px; ">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" id="inputEmail4">
       </div>
-      <div class="form-example">
-        <label for="password">Password: </label>
-        <input type="password" name="password" id="password" required />
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword4">
       </div>
-      <div class="form-example">
-        <input type="submit" value="Login!" />
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary">Sign in</button>
       </div>
     </form>
 
-    <h3>Not a member yet?</h3>
-    <a asp-area="" asp-controller="Login" asp-action="CreateAccount">Create account</a>
-
+    <div style="padding-top: 50px;display:flex; flex-direction:column;  justify-content:center;">
+      <h3>Not a member yet?</h3>
+      <a style="max-width:fit-content;" class="btn btn-primary" asp-area="" asp-controller="Login"
+        asp-action="CreateAccount">Create
+        account</a>
+    </div>
   </div>
+
 </div>
