@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Npgsql.Replication;
 
 public class CreateUserDto
 {
@@ -49,7 +50,7 @@ public class UserService
 
 
 [ApiController]
-[Route("api/user")]
+[Route("api")]
 public class UserController : ControllerBase
 {
     UserService userService;
@@ -59,16 +60,41 @@ public class UserController : ControllerBase
         this.userService = userService;
     }
 
-    [HttpPost]
-    public IActionResult CreateUser([FromBody] CreateUserDto dto)
-    {
-        User user = userService.CreateUser(dto.Id, dto.Email);
 
-        return Ok(new UserDto(user));
-    }
-    [HttpGet]
+    /*   [HttpPost]
+       public IActionResult CreateUser([FromBody] CreateUserDto dto)
+       {
+           User user = userService.CreateUser(dto.Id, dto.Email);
+
+           return Ok(new UserDto(user));
+       }*/
+
+    [HttpGet("hej")]
     public List<UserDto> GetAllUser()
     {
         return userService.GetAll().Select(user => new UserDto(user)).ToList();
     }
+
+    [HttpPost("test-create-user")]
+    public IActionResult TestCreateUser([FromBody] CreateUserDto dto)
+    {
+        try
+        {
+            // Call the CreateUser method to add the test user to the database
+            User testUser = userService.CreateUser(dto.Id, dto.Email);
+
+            // Return the created user details
+            return Ok(new UserDto(testUser));
+        }
+        catch (Exception ex)
+        {
+            // Log the exception details
+            Console.WriteLine($"Error creating user: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
 }
+
+
+

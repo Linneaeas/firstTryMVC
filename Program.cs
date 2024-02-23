@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Database=firstTryMVC;Email=postgres;Id=id"));
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Database=Loveley;Email=postgres;Id=id"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,6 +19,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.MapControllers();
 
 app.UseRouting();
 
