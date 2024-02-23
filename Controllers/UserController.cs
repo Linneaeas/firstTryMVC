@@ -1,28 +1,74 @@
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("user")]
-public class UserController : ControllerBase
+public class CreateUserDto
 {
-    private ApplicationContext context;
+    public string Id { get; set; } = "";
+    public string Email { get; set; } = "";
+}
 
-    public UserController(ApplicationContext context)
+
+public class UserDto
+{
+    public string Id { get; set; }
+    public string Email { get; set; }
+
+    public UserDto(User user)
+    {
+        this.Id = user.Id;
+        this.Email = user.Email;
+    }
+}
+
+
+
+public class UserService
+{
+    ApplicationContext context;
+
+    public UserService(ApplicationContext context)
     {
         this.context = context;
     }
 
-    [HttpPost]
-    public string CreateUser([FromQuery] string email, string id)
+    public User CreateUser(string id, string email)
     {
-        User user = new User(email, id);
+        // TODO: Prevent course name duplicates
+        User user = new User(id, email);
 
-        // Registrera ett tillägg (spara i databasen).
-        // DbContext gör inga ändringar direkt. 'SaveChanges' måste användas.
         context.Users.Add(user);
-
-        // Utför ändringar.
         context.SaveChanges();
 
-        return "Created user";
+        return user;
+    }
+    public List<User> GetAll()
+    {
+        return context.Users.ToList();
+    }
+}
+
+
+
+[ApiController]
+[Route("api/user")]
+public class UserController : ControllerBase
+{
+    UserService userService;
+
+    public UserController(UserService userService)
+    {
+        this.userService = userService;
+    }
+
+    [HttpPost]
+    public IActionResult CreateUser([FromBody] CreateUserDto dto)
+    {
+        User user = userService.CreateUser(dto.Id, dto.Email);
+
+        return Ok(new UserDto(user));
+    }
+    [HttpGet]
+    public List<UserDto> GetAllUser()
+    {
+        return userService.GetAll().Select(user => new UserDto(user)).ToList();
     }
 }
