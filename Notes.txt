@@ -1,1 +1,66 @@
 Next: Planera utifran boken 9.3 & generellt hur ska sidan fungera/se ut
+
+
+Next: Planera utifran boken 9.3 & genereelt hur ska sidan fungera/se ut
+
+Controllers/
+  HomeController.cs
+  PostController.cs
+  CommentController.cs
+Models/
+  User.cs
+  Post.cs
+  Comment.cs
+  Image.cs
+Views/
+  HomeView.html
+  LogInView.html
+  CategoryView.html
+  ProductView.html
+  CartView.html
+
+  users  -> logga in/skapa konto -> välj kategori    -> välj produkt -> lägg till i kundvagn -> betala/slutför.
+        -> välj kategori    -> välj produkt -> lägg till i kundvagn -> logga in/skapa konto -> betala/slutför.
+
+
+
+Controllers/
+    AccountController.cs // Hanterar inloggning och registrering
+    ProductController.cs // Hanterar produktsidor och produktrelaterad logik
+    CartController.cs // Hanterar kundvagnsåtgärder
+    CheckoutController.cs // Hanterar kassasidan och beställningsprocessen
+    CategoryController.cs // Hanterar kategorisidor och kategori-relaterad logik
+    HomeController.cs // Hanterar startsidan och andra generella sidor
+
+Models/
+    User.cs // Representerar användare i systemet
+    Product.cs // Representerar produkter som säljs
+    CartItem.cs // Representerar objekt i kundvagnen
+    Order.cs // Representerar en beställning
+    Category.cs // Representerar produktkategorier
+
+Views/
+    Account/
+    Login.cshtml // Inloggningsvy
+    Register.cshtml // Registreringsvy
+
+    Product/
+    Product.cshtml // Lista över produkter
+    Detail.cshtml // Detaljerad vy för en enskild produkt
+
+    Cart/
+    Cart.cshtml // Kundvagnens vy
+
+    Checkout/
+    Checkout.cshtml // Kassasidan
+
+    Category/
+    Category.cshtml // Lista över produkter i en kategori
+
+    Home/
+    Home.cshtml // Startsida
+    Privacy.cshtml // 
+
+Shared/
+    _Layout.cshtml // Gemensam layout för webbplatsen
+    _PartialView.cshtml // Delvyer som används på flera sidor, t.ex. navigationsfält
