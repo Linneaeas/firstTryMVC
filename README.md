@@ -18,3 +18,24 @@ brew install postgresql
 psql -h localhost -p 5432 -U myuser mydatabase
 ```
 * Then paste "mypassword"
+
+## Install dotnet ef tools
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+## Migrate
+
+```
+dotnet ef database update
+```
+
+## Check tables in psql
+
+```
+psql -h localhost -p 5432 -U myuser mydatabase
+```
+```
+select * from "Users";
+```

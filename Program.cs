@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Database=Loveley;Email=postgres;Id=id"));
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Database=mydatabase;Username=myuser;Password=mypassword;"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
