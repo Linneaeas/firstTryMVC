@@ -7,6 +7,9 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Register UserService as a scoped service
+builder.Services.AddScoped<UserService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
