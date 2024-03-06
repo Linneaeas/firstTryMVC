@@ -3,7 +3,7 @@ using Npgsql.Replication;
 
 public class CreateUserDto
 {
-    public string Id { get; set; } ="";
+    public Guid Id { get; set; }
     public string Email { get; set; } = "";
      public string Password { get; set; } = "";
 }
@@ -11,7 +11,7 @@ public class CreateUserDto
 
 public class UserDto
 {
-    public string Id { get; set; }
+    public Guid Id { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
 
@@ -34,10 +34,10 @@ public class UserService
         this.context = context;
     }
 
-    public User CreateUser(string id, string email, string password)
+    public User CreateUser( string email, string password)
     {
         // TODO: Prevent course name duplicates
-        User user = new User(id, email, password);
+    User user = new User(email, password);
 
         context.Users.Add(user);
         context.SaveChanges();
@@ -83,8 +83,8 @@ public class UserController : ControllerBase
     {
         try
         {
-            // Call the CreateUser method to add the test user to the database
-            User testUser = userService.CreateUser(dto.Id, dto.Email, dto.Password);
+           User testUser = userService.CreateUser(dto.Email, dto.Password);
+
 
             // Return the created user details
             return Ok(new UserDto(testUser));
