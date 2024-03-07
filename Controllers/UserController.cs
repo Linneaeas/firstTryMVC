@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Npgsql.Replication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 public class CreateUserDto
 {
@@ -63,22 +67,12 @@ public class UserController : ControllerBase
 
 
     [HttpPost]
-    [Authorize("create_user")]
+    [Route("create_user")]
     public IActionResult CreateUser([FromBody] CreateUserDto dto)
     {
-        try
-        {
+      
             User user = userService.CreateUser(dto.Email, dto.Password);
             return Ok(new UserDto(user));
-        }
-        catch (DuplicateNameException)
-        {
-            return Conflict($"A user with the email '{dto.Email}' already exists.");
-        }
-        catch (ArgumentException)
-        {
-            return BadRequest($"'Email' and 'Password' must not be null or empty.");
-        }
     }
 
     [HttpGet("hej")]

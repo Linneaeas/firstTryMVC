@@ -6,9 +6,9 @@ namespace firstTryMVC.Controllers;
 
 public class CartController : Controller
 {
-    private readonly ILogger<ShopController> _logger;
+    private readonly ILogger<CartController> _logger;
 
-    public CartController(ILogger<ShopController> logger)
+    public CartController(ILogger<CartController> logger)
     {
         _logger = logger;
     }
