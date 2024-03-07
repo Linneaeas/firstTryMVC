@@ -1,8 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using System.Text;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Database=mydatabase;Username=myuser;Password=mypassword;"));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -11,6 +20,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

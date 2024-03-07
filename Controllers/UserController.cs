@@ -23,8 +23,6 @@ public class UserDto
     }
 }
 
-
-
 public class UserService
 {
     ApplicationContext context;
@@ -50,52 +48,46 @@ public class UserService
     }
 }
 
-
-
 [ApiController]
 [Route("api")]
 public class UserController : ControllerBase
 {
     UserService userService;
+     ApplicationContext context;
 
     public UserController(UserService userService)
     {
         this.userService = userService;
+         this.context = context;
     }
 
 
-    /*   [HttpPost]
-       public IActionResult CreateUser([FromBody] CreateUserDto dto)
-       {
-           User user = userService.CreateUser(dto.Id, dto.Email);
-
-           return Ok(new UserDto(user));
-       }*/
+    [HttpPost]
+    [Authorize("create_user")]
+    public IActionResult CreateUser([FromBody] CreateUserDto dto)
+    {
+        try
+        {
+            User user = userService.CreateUser(dto.Email, dto.Password);
+            return Ok(new UserDto(user));
+        }
+        catch (DuplicateNameException)
+        {
+            return Conflict($"A user with the email '{dto.Email}' already exists.");
+        }
+        catch (ArgumentException)
+        {
+            return BadRequest($"'Email' and 'Password' must not be null or empty.");
+        }
+    }
 
     [HttpGet("hej")]
-    public List<UserDto> GetAllUser()
+    public List<UserDto> GetAllUsers()
     {
         return userService.GetAll().Select(user => new UserDto(user)).ToList();
     }
 
-    [HttpPost("test-create-user")]
-    public IActionResult TestCreateUser([FromBody] CreateUserDto dto)
-    {
-        try
-        {
-           User testUser = userService.CreateUser(dto.Email, dto.Password);
-
-
-            // Return the created user details
-            return Ok(new UserDto(testUser));
-        }
-        catch (Exception ex)
-        {
-            // Log the exception details
-            Console.WriteLine($"Error creating user: {ex.Message}");
-            return StatusCode(500, "Internal Server Error");
-        }
-    }
+   
 
 }
 
